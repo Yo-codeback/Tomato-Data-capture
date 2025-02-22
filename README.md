@@ -3,7 +3,7 @@
 `This Introduction document is Traditional Chinese`</br>
 `Sorry we don't have English Introduction document`
 
-## 本專案在2025/2/22發表第一個版本(V5 - Can Relase)
+## 本專案在2025/2/22發表第一個版本(V6 - Can Relase)
 本專案使用語言:json python<br>
 本專案無任何官方建立的網站
 
