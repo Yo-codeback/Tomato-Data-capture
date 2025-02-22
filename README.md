@@ -9,8 +9,8 @@
 
 ## 本專案在2025/2/22發表第一個版本(V6 - Can Relase)
 本專案使用語言:json python<br>
-本專案無任何官方建立的網站
-
+本專案無任何官方建立的網站<br>
+本專案程式皆由ChatGPT先行創作，再經由作者修改後上傳
 ## 本專案建議使用
 本專案建議與同作者開發之[tomato-dascbord](https://github.com/Yo-codeback/Tomato-Dashboard)配套進行使用<br>
 
@@ -35,6 +35,7 @@
 ## First Version Released on 2025/2/22 (V6 - Can Release)  
 Project Language: JSON, Python  
 This project does not have any officially established website.  
+This project program was first created by ChatGPT, and then modified and uploaded by the author.
 
 ## Recommended Usage  
 It is recommended to use this project along with [tomato-dashboard](https://github.com/Yo-codeback/Tomato-Dashboard), developed by the same author.  
