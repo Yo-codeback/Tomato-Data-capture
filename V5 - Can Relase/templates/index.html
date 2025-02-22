@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果菜市場儀表盤</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .message {
+            text-align: center;
+            color: red;
+            font-size: 18px;
+        }
+        .chart-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>台北二市場 番茄-牛番茄交易數據</h1>
+        <div class="message" id="message"></div>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>市場名稱</th>
+                    <th>平均價 (元/公斤)</th>
+                    <th>交易量 (公斤)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be inserted here dynamically -->
+            </tbody>
+        </table>
+        <div class="chart-container">
+            <canvas id="priceChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="volumeChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        fetch('./taipei_data.json')
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    document.getElementById('message').textContent = "⚠ 今日為休市日，無交易數據";
+                    return;
+                }
+                const tableBody = document.getElementById('data-table').querySelector('tbody');
+                const labels = [];
+                const prices = [];
+                const volumes = [];
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.交易日期}</td>
+                        <td>${item.市場名稱}</td>
+                        <td>${item.平均價}</td>
+                        <td>${item.交易量}</td>
+                    `;
+                    tableBody.appendChild(row);
+                    labels.push(item.交易日期);
+                    prices.push(item.平均價);
+                    volumes.push(item.交易量);
+                });
+
+                const ctxPrice = document.getElementById('priceChart').getContext('2d');
+                new Chart(ctxPrice, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '平均價 (元/公斤)',
+                            data: prices,
+                            borderColor: 'red',
+                            fill: false
+                        }]
+                    }
+                });
+
+                const ctxVolume = document.getElementById('volumeChart').getContext('2d');
+                new Chart(ctxVolume, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '交易量 (公斤)',
+                            data: volumes,
+                            borderColor: 'blue'
+                            
+                        }]
+                    }
+                });
+            })
+            .catch(error => {
+                document.getElementById('message').textContent = "❌ 無法載入資料，請洽管理人員";
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交易數據看板</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 左側時鐘與跑馬燈 -->
+        <div class="left-panel">
+            <div class="clock">
+                <span id="clock">00:00:00</span>
+                <div class="date">
+                    <span id="date">yyy/mm/dd</span>
+                    <span id="weekday">星期X</span>
+                </div>
+            </div>
+            <div class="marquee-container">
+                <div id="marquee1" class="marquee-content">系</div>
+                <div id="marquee2" class="marquee-content">統</div>
+                <div id="marquee3" class="marquee-content">測</div>
+            </div>
+        </div>
+
+        <!-- 右側交易數據 -->
+        <div class="main-content">
+            <div class="today-data">
+                <h2>今日交易數據</h2>
+                <p>日期：<span id="today-date">-</span></p>
+                <p>市場：<span id="market-name">-</span></p>
+                <p>平均價：<span id="average-price">-</span></p>
+                <p>交易量：<span id="trade-volume">-</span></p>
+            </div>
+
+            <h2>過往交易數據圖表</h2>
+            <div class="charts">
+                <canvas id="priceChart"></canvas>
+                <canvas id="volumeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 資料抓取失敗 -->
+        <div id="error-message" class="hidden">資料抓取失敗</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+body {
+    background-color: #0a0a12;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.left-panel {
+    width: 30%;
+    text-align: center;
+}
+
+.clock {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffcc99;
+}
+
+.date {
+    font-size: 1.5rem;
+    color: lightgreen;
+}
+
+.marquee-container {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 40px;
+}
+
+.marquee-content {
+    font-size: 4rem;
+    position: absolute;
+    bottom: -50px;
+    opacity: 0;
+}
+
+@keyframes scrollUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.main-content {
+    width: 70%;
+    padding: 20px;
+}
+
+.today-data {
+    border: 2px solid white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.charts {
+    display: flex;
+    justify-content: space-between;
+}
+
+canvas {
+    width: 48%;
+    height: 300px;
+    background: #1a1a2e;
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.blur-background {
+    filter: blur(5px);
+}
+
+#error-message {
+    font-size: 2rem;
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
